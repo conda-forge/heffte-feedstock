@@ -39,6 +39,7 @@ requirements:
     - {{ stdlib("c") }}
     - cmake
     - make  # [unix]
+    - {{ mpi }}  # [not win and build_platform != target_platform and mpi == "openmpi"]
     - pkg-config
   host:
     - fftw * mpi_{{ mpi }}_*  # [not win]

@@ -12,12 +12,17 @@ if [[ ${target_platform} =~ osx.* ]]; then
 fi
 
 # configure
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" && "${mpi}" == "openmpi" ]]; then
+  export OPAL_PREFIX="$PREFIX"
+fi
+
 HAVE_AVX="OFF"
 if [[ "$target_platform" == "linux-64" ]] || \
    [[ "$target_platform" == "linux-32" ]] || \
    [[ "$target_platform" == "osx-64" ]]; then
     HAVE_AVX="ON"
 fi
+
 cmake \
     -S ${SRC_DIR} -B build            \
     ${CMAKE_ARGS}                     \
