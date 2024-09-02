@@ -12,6 +12,12 @@ if [[ ${target_platform} =~ osx.* ]]; then
 fi
 
 # configure
+HAVE_AVX="OFF"
+if [[ "$target_platform" == "linux-64" ]] || \
+   [[ "$target_platform" == "linux-32" ]] || \
+   [[ "$target_platform" == "osx-64" ]]; then
+    HAVE_AVX="ON"
+fi
 cmake \
     -S ${SRC_DIR} -B build            \
     ${CMAKE_ARGS}                     \
@@ -21,7 +27,7 @@ cmake \
     -DCMAKE_INSTALL_LIBDIR=lib        \
     -DCMAKE_INSTALL_PREFIX=${PREFIX}  \
     -DHeffte_DISABLE_GPU_AWARE_MPI=ON \
-    -DHeffte_ENABLE_AVX=ON            \
+    -DHeffte_ENABLE_AVX=${HAVE_AVX}   \
     -DHeffte_ENABLE_AVX512=OFF        \
     -DHeffte_ENABLE_FFTW=ON           \
     -DHeffte_ENABLE_CUDA=OFF          \
