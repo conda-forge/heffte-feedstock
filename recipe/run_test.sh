@@ -7,9 +7,6 @@ export OMP_NUM_THREADS=2
 
 # OpenMPI
 export OMPI_MCA_plm=^rsh
-if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" && "${mpi}" == "openmpi" ]]; then
-  export OPAL_PREFIX="$PREFIX"
-fi
 
 # Configure
 cmake    \
