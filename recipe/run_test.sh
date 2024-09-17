@@ -7,6 +7,7 @@ export OMP_NUM_THREADS=2
 
 # OpenMPI
 export OMPI_MCA_plm=^rsh
+export OPAL_PREFIX="$PREFIX"  # cross-compilation OpenMPI
 
 # Configure
 cmake    \
